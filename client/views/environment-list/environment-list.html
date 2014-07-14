@@ -1,0 +1,15 @@
+<template name="environmentList">
+	<ul class="nav nav-pills nav-stacked">
+		{{#each environments}}
+			<li><a href="/environments/{{_id}}">{{name}}</a></li>
+		{{/each}}
+	</ul>
+	<div class="form-inline add-environment-form">
+		<div class="form-group">
+			<input type="text" class="form-control" name="name"/>
+		</div>
+		<div class="form-group">
+			<div class="btn btn-default do-add-environment">Add Environment</div>
+		</div>
+	</div>
+</template>

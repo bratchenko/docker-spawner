@@ -1,0 +1,58 @@
+<template name="environmentCard">
+	{{#with environment}}
+	<div class="environment-card">
+		<div class="environment-card__header">
+			<div class="form-inline">
+				<div class="form-group">
+					<div class="do-save btn btn-primary">Save</div>
+				</div>
+				<div class="form-group pull-right">
+					<div class="do-delete btn btn-danger">Delete</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="form-horizontal" role="form">
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Name</label>
+				<div class="col-sm-3">
+					<input value="{{name}}" name="name" class="form-control"  />
+				</div>
+				<div class="col-sm-6">
+					<input value="{{description}}" name="description" class="form-control" placeholder="Description"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Base domain</label>
+				<div class="col-sm-9">
+					<input value="{{baseDomain}}" name="baseDomain" class="form-control"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Default tag</label>
+				<div class="col-sm-9">
+					<input value="{{defaultTag}}" name="defaultTag" class="form-control"/>
+				</div>
+			</div>
+		</div>
+
+		<section class="variables-container">
+			<h4>Variables</h4>
+
+			{{> environmentVariables}}
+		</section>
+
+		<section class="services-container">
+			<h4>Services</h4>
+
+			<div class="environment-card__services-list">
+				{{#each services}}
+					{{> serviceCard}}
+				{{/each}}
+			</div>
+
+			<div class="do-add-service btn btn-default"><i class="glyphicon glyphicon-plus"></i> Add service</div>
+		</section>
+	</div>
+	{{/with}}
+</template>

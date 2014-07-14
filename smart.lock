@@ -1,0 +1,65 @@
+{
+  "meteor": {},
+  "dependencies": {
+    "basePackages": {
+      "bootstrap-3": {},
+      "iron-router": {
+        "git": "https://github.com/EventedMind/iron-router",
+        "branch": "feature/iron-layout"
+      },
+      "iron-layout": {
+        "git": "https://github.com/EventedMind/iron-layout",
+        "branch": "master"
+      },
+      "iron-core": {
+        "git": "https://github.com/EventedMind/iron-core",
+        "branch": "master"
+      },
+      "iron-dynamic-template": {
+        "git": "https://github.com/EventedMind/iron-dynamic-template",
+        "branch": "master"
+      },
+      "jobCollection": {
+        "git": "https://github.com/daeq/meteor-job-collection",
+        "branch": "master"
+      }
+    },
+    "packages": {
+      "bootstrap-3": {
+        "git": "https://github.com/mangasocial/meteor-bootstrap-3.git",
+        "tag": "v3.2.0-1",
+        "commit": "17a63902fc6cf1096c5289d963c66cf28b474727"
+      },
+      "iron-router": {
+        "git": "https://github.com/EventedMind/iron-router",
+        "branch": "feature/iron-layout",
+        "commit": "40e2e41644a0576964616d0e69a9bf7cff76d925"
+      },
+      "iron-layout": {
+        "git": "https://github.com/EventedMind/iron-layout",
+        "branch": "master",
+        "commit": "f79e469bb2a61741ea18b5352cb474d91eabebad"
+      },
+      "iron-core": {
+        "git": "https://github.com/EventedMind/iron-core",
+        "branch": "master",
+        "commit": "8e13c24b5229eaf3ed49abbd0ed1973fcb4e056f"
+      },
+      "iron-dynamic-template": {
+        "git": "https://github.com/EventedMind/iron-dynamic-template",
+        "branch": "master",
+        "commit": "03510a55e5a4754d7310607b697e2df49bddcb52"
+      },
+      "jobCollection": {
+        "git": "https://github.com/daeq/meteor-job-collection",
+        "branch": "master",
+        "commit": "703dfb8e48bad40eb09918d8c5ad6162c93b5014"
+      },
+      "blaze-layout": {
+        "git": "https://github.com/EventedMind/blaze-layout.git",
+        "tag": "v0.2.5",
+        "commit": "273e3ab7d005d91a1a59c71bd224533b4dae2fbd"
+      }
+    }
+  }
+}
