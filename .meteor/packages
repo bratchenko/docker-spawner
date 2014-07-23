@@ -8,7 +8,7 @@ insecure
 autopublish
 bootstrap-3
 less
-iron-router
 iron-layout
 jobCollection
 http
+iron-router

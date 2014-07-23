@@ -2,24 +2,9 @@
   "packages": {
     "bootstrap-3": {},
     "iron-router": {
-      "git": "http://github.com/EventedMind/iron-router",
-      "branch": "feature/iron-layout"
+    	"git": "http://github.com/EventedMind/iron-router",
+      	"branch": "devel"
     },
-    "iron-layout": {
-      "git": "http://github.com/EventedMind/iron-layout",
-      "branch": "master"
-    },
-    "iron-core": {
-      "git": "http://github.com/EventedMind/iron-core",
-      "branch": "master"
-    },
-    "iron-dynamic-template": {
-      "git": "http://github.com/EventedMind/iron-dynamic-template",
-      "branch": "master"
-    },
-    "jobCollection": {
-      "git": "http://github.com/daeq/meteor-job-collection",
-      "branch": "master"
-    }
+    "jobCollection": {}
   }
 }
