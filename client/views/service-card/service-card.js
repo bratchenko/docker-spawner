@@ -55,6 +55,8 @@ Template.serviceCard.events({
 		    }
 		);
 
+        job.after(new Date(0)); // So that job will be run immediately
+
 		job.save();
 	},
 
