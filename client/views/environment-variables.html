@@ -1,0 +1,24 @@
+<div class="environment-variables">
+    <h4>Environment variables <div ng-click="variables.push({})" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-plus"></i> Add</div></h4>
+
+    <div ng-repeat="variable in variables" ng-init="isEditing = !variable.name" class="variable">
+        <div ng-show="isEditing" class="form-inline variable-edit">
+            <div class="form-group">
+                <input class="form-control" name="variable-name" ng-model="variable.name"/>
+            </div>
+            <div class="form-group">
+                <label class="control-label">=</label>
+            </div>
+            <div class="form-group">
+                <input class="form-control" name="variable-value" ng-model="variable.value" placeholder="{{variable.defaultValue}}"/>
+            </div>
+            <div class="form-group">
+                <button ng-click="isEditing = false" class="btn btn-default btn-sm">Ok</button>
+            </div>
+            <div class="form-group pull-right">
+                <button ng-click="variables.splice(variables.indexOf(variable), 1)" class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-remove"></i></button>
+            </div>
+        </div>
+        <div ng-hide="isEditing" ng-click="isEditing = true" class="variable-value">{{variable.name}} = {{variable.value || variable.defaultValue}}</div>
+    </div>
+</div>

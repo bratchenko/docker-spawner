@@ -1,0 +1,43 @@
+<div class="modal-header">
+    <h3 class="gray-text">Edit service destination</h3>
+</div>
+<div class="modal-body">
+
+    <div class="form-horizontal" role="form">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Destination</label>
+            <div class="col-sm-4">
+                <select class="form-control" ng-options="destination._id as destination.name for destination in destinations" ng-model="serviceDestination.destinationId">
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Domain</label>
+            <div class="col-sm-4">
+                <input class="form-control" ng-model="serviceDestination.parameters.domain"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Port</label>
+            <div class="col-sm-4">
+                <input class="form-control" ng-model="serviceDestination.parameters.port" placeholder="80"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Image</label>
+            <div class="col-sm-4">
+                <input class="form-control" ng-model="serviceDestination.imageName" placeholder="{{service.imageName}}"/>
+            </div>
+            <div class="col-sm-4">
+                <input class="form-control" ng-model="serviceDestination.imageTag" placeholder="{{service.imageTag}}"/>
+            </div>
+        </div>
+    </div>
+
+    <div ng-include="'/views/environment-variables.html'" ng-init="variables = serviceDestination.variables"></div>
+
+</div>
+<div class="modal-footer">
+        <button ng-click="save()" class="btn btn-primary pull-left" ng-click="Save">Save</button>
+        <button ng-click="delete()" class="btn btn-danger pull">Delete</button>
+</div>

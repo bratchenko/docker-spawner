@@ -1,0 +1,55 @@
+{
+  "name": "docker-spawner",
+  "version": "0.0.1",
+  "description": "A thing that takes docker images and releases them with specified configurations.",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "bower install",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/daeq/docker-spawner"
+  },
+  "author": "Daniil Bratchenko",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/daeq/docker-spawner/issues"
+  },
+  "homepage": "https://github.com/daeq/docker-spawner",
+  "dependencies": {
+    "express": "^4.2.0",
+    "ejs": "^1.0.0",
+    "lodash": "^2.4.1",
+    "body-parser": "^1.2.2",
+    "grunt": "^0.4.5",
+    "time-grunt": "~0.2.8",
+    "load-grunt-tasks": "~0.3.0",
+    "grunt-contrib-less": "~0.9.0",
+    "grunt-autoprefixer": "~0.7.2",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-copy": "^0.5.0",
+    "grunt-rev": "^0.1.0",
+    "grunt-contrib-concat": "^0.4.0",
+    "grunt-usemin": "^2.1.1",
+    "grunt-contrib-cssmin": "^0.9.0",
+    "grunt-contrib-uglify": "^0.4.0",
+    "compression": "^1.0.6",
+    "password-hash": "^1.2.2",
+    "cookie-session": "^1.0.2",
+    "mongoose": "^3.9.0",
+    "passport-local": "^1.0.0",
+    "passport": "^0.2.0",
+    "async": "^0.9.0",
+    "q": "^1.0.1",
+    "express-promise": "^0.2.0",
+    "kue": "^0.8.3",
+    "co": "^3.1.0",
+    "request": "^2.39.0"
+  },
+  "devDependencies": {
+    "grunt-concurrent": "^0.5.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-nodemon": "^0.3.0"
+  }
+}

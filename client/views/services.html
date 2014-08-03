@@ -1,0 +1,14 @@
+<alert ng-show="loadingData" type="'info'">Loading...</alert>
+
+<div class="form-inline row services-navigation">
+    <div class="form-group col-sm-10">
+        <input class="form-control search" placeholder="Search..."/>
+    </div>
+    <div class="form-group col-sm-2">
+        <button ng-click="addService()" class="btn btn-default pull-right"><i class="glyphicon glyphicon-plus"></i> Add Service</button>
+    </div>
+</div>
+
+<div ng-hide="loadingData">
+    <div ng-repeat="service in services" ng-include="'/views/service-in-list.html'" ng-controller="ServiceInListCtrl"></div>
+</div>

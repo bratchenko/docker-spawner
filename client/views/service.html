@@ -1,0 +1,45 @@
+<div class="service">
+    <div class="service__header">
+        <div class="form-inline">
+            <div class="form-group">
+                <button ng-click="save()" class="btn btn-primary">Save</button>
+            </div>
+            <div class="form-group pull-right">
+                <button ng-click="delete()" class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+    </div>
+    <div class="service__body">
+        <div class="form-horizontal" role="form">
+            <div class="form-group">
+                <label class="col-sm-1 control-label">Name</label>
+                <div class="col-sm-4">
+                    <input class="form-control" name="name" ng-model="service.name"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-1 control-label">Image</label>
+                <div class="col-sm-4">
+                    <input class="form-control" name="imageName" ng-model="service.imageName"/>
+                </div>
+                <div class="col-sm-4">
+                    <input class="form-control" name="imageTag" ng-model="service.imageTag"/>
+                </div>
+            </div>
+        </div>
+
+        <div ng-include="'/views/environment-variables.html'" ng-init="variables = service.variables"></div>
+
+        <h4>Destinations <div ng-click="addDestination()" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-plus"></i> Add</div></h4>
+
+        <alert ng-show="loadingDestinations" type="'info'">Loading...</alert>
+
+        <div ng-hide="loadingDestinations">
+            <div ng-click="editDestination(serviceDestination)" ng-repeat="serviceDestination in serviceDestinations" class="service-destination-in-list clearfix">
+                <button ng-click="$event.stopPropagation(); spawn(serviceDestination)" ng-disabled="serviceDestination.isSpawning" class="btn btn-default pull-right">Spawn</button>
+                {{serviceDestination.parameters.domain}}
+            </div>
+        </div>
+
+    </div>
+</div>

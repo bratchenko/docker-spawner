@@ -1,0 +1,5 @@
+/.tmp
+/client/bower_components
+/node_modules
+/client-build
+/config.local.js
