@@ -1,4 +1,4 @@
-angular.module('dockerSpawnerApp').controller('ServiceCtrl', function($scope, $state, service, $modal, ServiceDestination, $http) {
+angular.module('dockerSpawnerApp').controller('ServiceCtrl', function($scope, $state, service, $modal, ServiceDestination, $http, Spawns) {
     $scope.service = service;
 
     $scope.service.variables = $scope.service.variables || [];
@@ -9,6 +9,7 @@ angular.module('dockerSpawnerApp').controller('ServiceCtrl', function($scope, $s
             $scope.serviceDestinations = ServiceDestination.query({serviceId: $scope.service._id});
             $scope.serviceDestinations.$promise.then(function() {
                 $scope.loadingDestinations = false;
+                Spawns.updateLastSpawnForServiceDestinations($scope.serviceDestinations);
             });
         }
     };
@@ -47,16 +48,24 @@ angular.module('dockerSpawnerApp').controller('ServiceCtrl', function($scope, $s
         serviceDestination.isSpawning = true;
         $scope.service.$save().then(function() {
             $http.post('/api/service-destinations/' + serviceDestination._id + '/spawn')
-                .then(function(data) {
-                    console.log("Spawn success", data);
-                    serviceDestination.isSpawning = false;
-                })
                 .catch(function(response) {
-                    serviceDestination.isSpawning = false;
-                    console.error("Spawning error", response.data);
+                    window.alert(response.data.error);
                 });
         });
     };
+
+    $scope.isServiceDestinationSpawning = function(serviceDestination) {
+        return serviceDestination.lastSpawn && serviceDestination.lastSpawn._id && !serviceDestination.lastSpawn.endTime;
+    };
+
+    $scope.isServiceDestinationSpawnLoading = function(serviceDestination) {
+        return serviceDestination.lastSpawn && serviceDestination.lastSpawn.loading;
+    };
+
+    $scope.cancelSpawn = function(spawn) {
+        Spawns.cancel(spawn);
+    };
+
 
     function openServiceDestinationPopup(serviceDestination) {
         $modal.open({

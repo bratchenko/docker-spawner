@@ -1,55 +1,57 @@
 module.exports = {
-    addAuthToExpressApp: addAuthToExpressApp
+    addAuthToExpressApp: addAuthToExpressApp,
+    addAuthToSocketIo: addAuthToSocketIo
 };
 
-var users = require('./users');
-
-function addAuthToExpressApp(app) {
-    var session = require('cookie-session'),
-        passport = require('passport'),
-        LocalStrategy = require('passport-local').Strategy;
-
-    app.use(session({
+var users = require('./users'),
+    cookieSession = require('cookie-session'),
+    sessionStore = cookieSession({
         secret: global.config.sessionSecret
-    }));
+    }),
+    socketIoPassport = require('./socket-io-passport'),
+    passport = require('passport'),
+    LocalStrategy = require('passport-local').Strategy;
 
-    app.use(passport.initialize());
-
-    app.use(passport.session());
-
-    passport.use(new LocalStrategy(
-        function(login, password, callback) {
-            users.findByLogin(login)
-                .then(function(user) {
-                    if (!user) {
-                        return callback(null, false, {message: 'User not found'});
-                    }
-
-                    if (!users.checkPassword(user, password)) {
-                        return callback(null, false, {message: 'Incorrect password'});
-                    }
-
-                    return callback(null, user);
-                })
-                .then(null, function(err) {
-                    return callback(err);
-                });
-        }
-    ));
-
-    passport.serializeUser(function(user, callback) {
-        callback(null, user.id);
-    });
-
-    passport.deserializeUser(function(id, callback) {
-        users.findById(id)
+passport.use(new LocalStrategy(
+    function(login, password, callback) {
+        users.findByLogin(login)
             .then(function(user) {
+                if (!user) {
+                    return callback(null, false, {message: 'User not found'});
+                }
+
+                if (!users.checkPassword(user, password)) {
+                    return callback(null, false, {message: 'Incorrect password'});
+                }
+
                 return callback(null, user);
             })
             .then(null, function(err) {
                 return callback(err);
             });
-    });
+    }
+));
+
+passport.serializeUser(function(user, callback) {
+    callback(null, user.id);
+});
+
+passport.deserializeUser(function(id, callback) {
+    users.findById(id)
+        .then(function(user) {
+            return callback(null, user);
+        })
+        .then(null, function(err) {
+            return callback(err);
+        });
+});
+
+function addAuthToExpressApp(app) {
+    app.use(sessionStore);
+
+    app.use(passport.initialize());
+
+    app.use(passport.session());
 
     app.get('/login', function(req, res) {
         res.render("login", {failure: req.param('failure')});
@@ -74,4 +76,12 @@ function addAuthToExpressApp(app) {
             res.redirect('/login');
         }
     });
+}
+
+function addAuthToSocketIo(io) {
+    io.use(socketIoPassport(
+        sessionStore,
+        passport.initialize(),
+        passport.session()
+    ));
 }

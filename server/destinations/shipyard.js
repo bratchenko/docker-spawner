@@ -2,10 +2,11 @@ module.exports = ShipyardDestination;
 
 var
     Q = require('q'),
+    util = require('util'),
     request = require('request');
 
-function ShipyardDestination(job, service, destination, serviceDestination) {
-    this._job = job;
+function ShipyardDestination(spawn, service, destination, serviceDestination) {
+    this._spawn = spawn;
     this._service = service;
     this._destination = destination;
     this._serviceDestination = serviceDestination;
@@ -33,8 +34,9 @@ ShipyardDestination.prototype.spawn = function*() {
 };
 
 ShipyardDestination.prototype._log = function() {
-    this._job.log.apply(this._job, arguments);
-    console.log.apply(console, arguments);
+    var message = util.format.apply(util, arguments);
+    this._spawn.addLogRecord(message);
+    console.log(message);
 };
 
 ShipyardDestination.prototype._pullImage = function() {
@@ -43,8 +45,7 @@ ShipyardDestination.prototype._pullImage = function() {
         "POST",
         "/images/create?fromImage=" + this._getImageName() + "&tag=" + this._getImageTag()
     ).then(function(res) {
-        self._job.log(res);
-        console.log(res);
+        self._log(res);
     });
 };
 

@@ -51,6 +51,8 @@
         </div>
     </div>
 
+    <script src="/socket.io/socket.io.js"></script>
+
     <!-- build:js /scripts/libs.js -->
     <script src="/bower_components/jquery/dist/jquery.js"></script>
     <script src="/bower_components/bootstrap/js/collapse.js"></script>
@@ -60,6 +62,7 @@
     <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="/bower_components/angular-resource/angular-resource.js"></script>
     <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="/bower_components/angular-socket-io/socket.js"></script>
     <!-- endbuild -->
 
     <!-- build:js /scripts/scripts.js -->
@@ -80,10 +83,16 @@
     <script src="/scripts/models/destination.js"></script>
     <script src="/scripts/models/service-destination.js"></script>
     <script src="/scripts/models/service-group.js"></script>
+
+    <script src="/scripts/services/socket.js"></script>
+    <script src="/scripts/services/spawns.js"></script>
     <!-- endbuild -->
 
     <script>
         angular.module('dockerSpawnerApp').constant('CURRENT_USER', <%-JSON.stringify(user)%>);
+        angular.module('dockerSpawnerApp').constant('CONFIG', {
+            pageGenerationTime: <%-Date.now()%>
+        });
     </script>
 
     <script type="text/javascript">

@@ -1,7 +1,8 @@
 angular.module('dockerSpawnerApp', [
     'ngResource',
     'ui.router',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'btford.socket-io'
 ])
 
 .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {

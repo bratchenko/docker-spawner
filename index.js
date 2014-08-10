@@ -6,9 +6,10 @@ var
     expressPromise = require('express-promise'),
     compression = require('compression'),
     auth = require('./server/auth'),
+    socketIo = require('socket.io'),
     fs = require('fs');
 
-var app = express();
+var app = module.exports = express();
 
 app.set('view engine', 'ejs');
 
@@ -65,10 +66,16 @@ app.use(function(err, req, res, next) {
 
 mongoose.connect(config.mongoUri);
 
-app.listen(config.port, function(err) {
+var server = require('http').createServer(app);
+
+app.socketIo = socketIo(server);
+auth.addAuthToSocketIo(app.socketIo);
+
+require('./server/spawns').initSocketIo(app.socketIo);
+require('./server/spawns').runWorker();
+
+server.listen(config.port, function(err) {
     if (err) console.log(err);
 
     console.log("Listening at localhost:" + config.port);
 });
-
-require('./server/spawn-queue').start();

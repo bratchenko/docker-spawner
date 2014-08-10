@@ -35,8 +35,22 @@
         <alert ng-show="loadingDestinations" type="'info'">Loading...</alert>
 
         <div ng-hide="loadingDestinations">
-            <div ng-click="editDestination(serviceDestination)" ng-repeat="serviceDestination in serviceDestinations" class="service-destination-in-list clearfix">
-                <button ng-click="$event.stopPropagation(); spawn(serviceDestination)" ng-disabled="serviceDestination.isSpawning" class="btn btn-default pull-right">Spawn</button>
+            <div
+                ng-click="editDestination(serviceDestination)"
+                ng-repeat="serviceDestination in serviceDestinations"
+                class="service-destination-in-list clearfix"
+            >
+                <button
+                    ng-show="!isServiceDestinationSpawning(serviceDestination) && !isServiceDestinationSpawnLoading(serviceDestination)"
+                    ng-click="$event.stopPropagation(); spawn(serviceDestination)"
+                    class="btn btn-default pull-right"
+                >Spawn</button>
+                <button ng-show="isServicedestinationSpawnLoading(serviceDestination)" disabled>
+                    <i class="glyphicon glyphicon-refresh"></i>
+                </button>
+                <div class="pull-right" ng-show="isServiceDestinationSpawning(serviceDestination)">
+                    Spawning... <button ng-click="$event.stopPropagation(); cancelSpawn(serviceDestination.lastSpawn)" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
+                </div>
                 {{serviceDestination.parameters.domain}}
             </div>
         </div>
