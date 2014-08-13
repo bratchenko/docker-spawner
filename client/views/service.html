@@ -51,6 +51,9 @@
                 <div class="pull-right" ng-show="isServiceDestinationSpawning(serviceDestination)">
                     Spawning... <button ng-click="$event.stopPropagation(); cancelSpawn(serviceDestination.lastSpawn)" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
                 </div>
+                <div class="spawn-status-container">
+                    <spawn-status ng-model="serviceDestination.lastSpawn" class="pull-right"></spawn-status>
+                </div>
                 {{serviceDestination.parameters.domain}}
             </div>
         </div>
