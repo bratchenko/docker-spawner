@@ -16,6 +16,7 @@ app.set('view engine', 'ejs');
 app.use('/scripts', compression());
 app.use('/styles', compression());
 
+app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 app.use(expressPromise());
 

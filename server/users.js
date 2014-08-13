@@ -66,8 +66,6 @@ function deleteUser(user) {
     return user.remove();
 }
 
-
-
 function _createDefaultUserIfNoUsersExist() {
     User.count().exec()
         .then(function(count) {
