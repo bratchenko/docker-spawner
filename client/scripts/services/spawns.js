@@ -30,6 +30,7 @@ angular.module('dockerSpawnerApp').service('Spawns', function(socket, $http, CON
 
             serviceDestinations.forEach(function(serviceDestination) {
                 serviceDestination.lastSpawn = _getLastSpawnForServiceDestinationId(serviceDestination._id);
+                delete serviceDestination.lastSpawn.loading;
             });
         });
 

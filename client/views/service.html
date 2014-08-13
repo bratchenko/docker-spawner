@@ -45,7 +45,11 @@
                     ng-click="$event.stopPropagation(); spawn(serviceDestination)"
                     class="btn btn-default pull-right"
                 >Spawn</button>
-                <button ng-show="isServicedestinationSpawnLoading(serviceDestination)" disabled>
+                <button
+                    ng-show="isServiceDestinationSpawnLoading(serviceDestination)"
+                    class="btn btn-default pull-right"
+                    disabled
+                >
                     <i class="glyphicon glyphicon-refresh"></i>
                 </button>
                 <div class="pull-right" ng-show="isServiceDestinationSpawning(serviceDestination)">
