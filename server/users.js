@@ -69,17 +69,15 @@ function deleteUser(user) {
 
 
 function _createDefaultUserIfNoUsersExist() {
-    var self = this;
-
     User.count().exec()
         .then(function(count) {
             if (count === 0) {
-                return self.createUser({
+                return createUser({
                         login: 'admin',
                         isAdmin: true
                     })
                     .then(function(user) {
-                        return self.setUserPassword(user, 'password');
+                        return setUserPassword(user, 'password');
                     });
             }
         })
