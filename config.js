@@ -8,8 +8,8 @@ var config = {
     mongoUri: process.env.MONGO_URI || '127.0.0.1/docker-spawner',
 
     livereload: {
-        host: 'localhost',
-        port: '35729',
+        host: process.env.LIVERELOAD_HOST || 'localhost',
+        port: process.env.LIVERELOAD_PORT || '35729',
         enabled: process.env.ENVIRONMENT === "development"
     },
 
