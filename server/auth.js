@@ -67,7 +67,7 @@ function addAuthToExpressApp(app) {
     });
 
     app.all('*', function(req, res, next) {
-        if (req.isAuthenticated()) {
+        if (req.isAuthenticated() || req.path.match(/^\/hooks\//) ) {
             return next();
         }
         if (req.url.match(/^\/api/)) {
