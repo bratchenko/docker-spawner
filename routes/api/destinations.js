@@ -27,7 +27,7 @@ module.exports = function(app) {
         );
     });
 
-    app.del('/api/destinations/:destinationId', function(req, res) {
+    app.delete('/api/destinations/:destinationId', function(req, res) {
         res.json(
             destinations.findById(req.params.destinationId)
                 .then(function(service) {

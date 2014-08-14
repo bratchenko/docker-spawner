@@ -34,8 +34,8 @@ ServiceSchema.pre('save', function(next) {
 
 var Service = mongoose.connection.model('Service', ServiceSchema);
 
-function findServices() {
-    return Service.find({}).sort({updatedTime: -1}).exec();
+function findServices(params) {
+    return Service.find(params).sort({updatedTime: -1}).exec();
 }
 
 function findServiceById(id) {

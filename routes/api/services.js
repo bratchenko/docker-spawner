@@ -27,7 +27,7 @@ module.exports = function(app) {
         );
     });
 
-    app.del('/api/services/:serviceId', function(req, res) {
+    app.delete('/api/services/:serviceId', function(req, res) {
         res.json(
             services.findById(req.params.serviceId)
                 .then(function(service) {
