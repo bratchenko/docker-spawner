@@ -248,7 +248,7 @@ ShipyardDestination.prototype._collectEnvironmentVariables = function() {
     if (this._service.variables) {
         this._service.variables.forEach(function(variable) {
             if (variable.name) {
-                variables[variable.name] = variable.value;
+                variables[variable.name] = variable.value || "";
             }
         });
     }
@@ -256,7 +256,7 @@ ShipyardDestination.prototype._collectEnvironmentVariables = function() {
     if (this._serviceDestination.variables) {
         this._serviceDestination.variables.forEach(function(variable) {
             if (variable.name) {
-                variables[variable.name] = variable.value;
+                variables[variable.name] = variable.value || "";
             }
         });
     }
